@@ -1,0 +1,39 @@
+﻿from eec808554936ae068b23df07ab54d4dc6302a695 mon sep 17 00:00:00 2001
+from: jzmaddock <jzmaddock@gmail.com>
+date: sat, 23 aug 2014 09:38:02 +0100
+subject: [patch] fix boost_no_cxx11_variadic_templates definition - the
+ feature was introduced in gcc 4.4.
+
+---
+ include/boost/config/compiler/gcc.hpp | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
+
+diff --git a/include/boost/config/compiler/gcc.hpp b/include/boost/config/compiler/gcc.hpp
+index f37159d..97d8a18 100644
+--- a/include/boost/config/compiler/gcc.hpp
++++ b/include/boost/config/compiler/gcc.hpp
+@@ -154,14 +154,6 @@
+ #  define boost_no_cxx11_function_template_default_args
+ #  define boost_no_cxx11_rvalue_references
+ #  define boost_no_cxx11_static_assert
+-
+-// variadic templates compiler:
+-//   http://www.generic-programming.org/~dgregor/cpp/variadic-templates.html
+-#  if defined(__variadic_templates) || (__gnuc__ > 4) || ((__gnuc__ == 4) && (__gnuc_minor__ >= 4) && defined(__gxx_experimental_cxx0x__))
+-#    define boost_has_variadic_tmpl
+-#  else
+-#    define boost_no_cxx11_variadic_templates
+-#  endif
+ #endif
+ 
+ // c++0x features in 4.4.n and later
+@@ -176,6 +168,7 @@
+ #  define boost_no_cxx11_deleted_functions
+ #  define boost_no_cxx11_trailing_result_types
+ #  define boost_no_cxx11_inline_namespaces
++#  define boost_no_cxx11_variadic_templates
+ #endif
+ 
+ #if __gnuc__ < 4 || (__gnuc__ == 4 && __gnuc_minor__ < 5)
+
+

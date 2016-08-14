@@ -1,0 +1,4 @@
+﻿# linked code is expat - only debian packaging is gpl-2+
+bitcoin-qt: possible-gpl-code-linked-with-openssl
+
+

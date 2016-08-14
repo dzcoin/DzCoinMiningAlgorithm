@@ -1,0 +1,15 @@
+﻿#!/bin/bash
+
+# this is a thin wrapper around dzcoin-cli that strips the windows-style eols
+# from the output if present. it is necessary when using dzcoin-cli.exe on
+# linux since shells will interpret the line-endings as part of the result.
+
+curdir=$(cd $(dirname "$0"); pwd)
+# get builddir and real_dzcoind
+
+# grab the value of $real_dzcoincli which may be dzcoin-cli.exe.
+. "${curdir}/tests-config.sh"
+
+"${real_dzcoincli}" "$@" | sed 's/\r//'
+
+

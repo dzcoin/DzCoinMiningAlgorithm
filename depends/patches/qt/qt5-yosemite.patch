@@ -1,0 +1,54 @@
+﻿the following patch was taken from upstream:
+https://qt.gitorious.org/qt/qtbase/commit/70e4428b6f1c6a4bad112203f67ee7d22107616c.patch
+
+the first hunk was removed because it conflicts with 5.2.1, and is not currently needed.
+
+from 70e4428b6f1c6a4bad112203f67ee7d22107616c mon sep 17 00:00:00 2001
+from: gabriel de dietrich <gabriel.dedietrich@digia.com>
+date: tue, 3 jun 2014 14:20:20 +0200
+subject: [patch] cocoa: adapt to xcode 6 clang version sudden pickiness
+mime-version: 1.0
+content-type: text/plain; charset=utf-8
+content-transfer-encoding: 8bit
+
+yes, that means os x yosemite fix.
+
+change-id: i236f7af7b803de24ff0895e04c9a9253b5cfdb3b
+reviewed-by: morten johan s酶rvig <morten.sorvig@digia.com>
+---
+ .../platforms/cocoa/qcocoaaccessibilityelement.mm  |    2 +-
+ .../platforms/cocoa/qcocoaapplicationdelegate.mm   |    2 +-
+ src/plugins/platforms/cocoa/qcocoamenuloader.mm    |    2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/plugins/platforms/cocoa/qcocoaapplicationdelegate.mm b/src/plugins/platforms/cocoa/qcocoaapplicationdelegate.mm
+index f841184..548c6a2 100644
+--- a/src/plugins/platforms/cocoa/qcocoaapplicationdelegate.mm
++++ b/src/plugins/platforms/cocoa/qcocoaapplicationdelegate.mm
+@@ -124,7 +124,7 @@ static void cleanupcocoaapplicationdelegate()
+     [dockmenu release];
+     [qtmenuloader release];
+     if (reflectiondelegate) {
+-        [nsapp setdelegate:reflectiondelegate];
++        [[nsapplication sharedapplication] setdelegate:reflectiondelegate];
+         [reflectiondelegate release];
+     }
+     [[nsnotificationcenter defaultcenter] removeobserver:self];
+diff --git a/src/plugins/platforms/cocoa/qcocoamenuloader.mm b/src/plugins/platforms/cocoa/qcocoamenuloader.mm
+index 60bc3b5..9340e94 100644
+--- a/src/plugins/platforms/cocoa/qcocoamenuloader.mm
++++ b/src/plugins/platforms/cocoa/qcocoamenuloader.mm
+@@ -174,7 +174,7 @@ qt_end_namespace
+ - (void)removeactionsfromappmenu
+ {
+     for (nsmenuitem *item in [appmenu itemarray])
+-        [item settag:nil];
++        [item settag:0];
+ }
+ 
+ - (void)dealloc
+-- 
+1.7.1
+
+
+

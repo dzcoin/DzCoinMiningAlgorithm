@@ -1,0 +1,420 @@
+﻿bin_programs += qt/dzcoin-qt
+extra_libraries += qt/libdzcoinqt.a
+
+# dzcoin qt core #
+qt_ts = \
+  qt/locale/dzcoin_ach.ts \
+  qt/locale/dzcoin_af_za.ts \
+  qt/locale/dzcoin_ar.ts \
+  qt/locale/dzcoin_be_by.ts \
+  qt/locale/dzcoin_bg.ts \
+  qt/locale/dzcoin_bs.ts \
+  qt/locale/dzcoin_ca_es.ts \
+  qt/locale/dzcoin_ca.ts \
+  qt/locale/dzcoin_ca@valencia.ts \
+  qt/locale/dzcoin_cmn.ts \
+  qt/locale/dzcoin_cs.ts \
+  qt/locale/dzcoin_cy.ts \
+  qt/locale/dzcoin_da.ts \
+  qt/locale/dzcoin_de.ts \
+  qt/locale/dzcoin_el_gr.ts \
+  qt/locale/dzcoin_en.ts \
+  qt/locale/dzcoin_eo.ts \
+  qt/locale/dzcoin_es_cl.ts \
+  qt/locale/dzcoin_es_do.ts \
+  qt/locale/dzcoin_es_mx.ts \
+  qt/locale/dzcoin_es.ts \
+  qt/locale/dzcoin_es_uy.ts \
+  qt/locale/dzcoin_et.ts \
+  qt/locale/dzcoin_eu_es.ts \
+  qt/locale/dzcoin_fa_ir.ts \
+  qt/locale/dzcoin_fa.ts \
+  qt/locale/dzcoin_fi.ts \
+  qt/locale/dzcoin_fr_ca.ts \
+  qt/locale/dzcoin_fr.ts \
+  qt/locale/dzcoin_gl.ts \
+  qt/locale/dzcoin_gu_in.ts \
+  qt/locale/dzcoin_he.ts \
+  qt/locale/dzcoin_hi_in.ts \
+  qt/locale/dzcoin_hr.ts \
+  qt/locale/dzcoin_hu.ts \
+  qt/locale/dzcoin_id_id.ts \
+  qt/locale/dzcoin_it.ts \
+  qt/locale/dzcoin_ja.ts \
+  qt/locale/dzcoin_ka.ts \
+  qt/locale/dzcoin_kk_kz.ts \
+  qt/locale/dzcoin_ko_kr.ts \
+  qt/locale/dzcoin_ky.ts \
+  qt/locale/dzcoin_la.ts \
+  qt/locale/dzcoin_lt.ts \
+  qt/locale/dzcoin_lv_lv.ts \
+  qt/locale/dzcoin_mn.ts \
+  qt/locale/dzcoin_ms_my.ts \
+  qt/locale/dzcoin_nb.ts \
+  qt/locale/dzcoin_nl.ts \
+  qt/locale/dzcoin_pam.ts \
+  qt/locale/dzcoin_pl.ts \
+  qt/locale/dzcoin_pt_br.ts \
+  qt/locale/dzcoin_pt_pt.ts \
+  qt/locale/dzcoin_ro_ro.ts \
+  qt/locale/dzcoin_ru.ts \
+  qt/locale/dzcoin_sah.ts \
+  qt/locale/dzcoin_sk.ts \
+  qt/locale/dzcoin_sl_si.ts \
+  qt/locale/dzcoin_sq.ts \
+  qt/locale/dzcoin_sr.ts \
+  qt/locale/dzcoin_sv.ts \
+  qt/locale/dzcoin_th_th.ts \
+  qt/locale/dzcoin_tr.ts \
+  qt/locale/dzcoin_uk.ts \
+  qt/locale/dzcoin_ur_pk.ts \
+  qt/locale/dzcoin_uz@cyrl.ts \
+  qt/locale/dzcoin_vi.ts \
+  qt/locale/dzcoin_vi_vn.ts \
+  qt/locale/dzcoin_zh_cn.ts \
+  qt/locale/dzcoin_zh_hk.ts \
+  qt/locale/dzcoin_zh_tw.ts
+
+qt_forms_ui = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/overviewpage.ui \
+  qt/forms/receivecoinsdialog.ui \
+  qt/forms/receiverequestdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/forms/sendcoinsdialog.ui \
+  qt/forms/sendcoinsentry.ui \
+  qt/forms/signverifymessagedialog.ui \
+  qt/forms/transactiondescdialog.ui
+
+qt_moc_cpp = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_dzcoinaddressvalidator.cpp \
+  qt/moc_dzcoinamountfield.cpp \
+  qt/moc_dzcoingui.cpp \
+  qt/moc_dzcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_overviewpage.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_receivecoinsdialog.cpp \
+  qt/moc_receiverequestdialog.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_sendcoinsdialog.cpp \
+  qt/moc_sendcoinsentry.cpp \
+  qt/moc_signverifymessagedialog.cpp \
+  qt/moc_splashscreen.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactiondescdialog.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_transactionview.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletframe.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/moc_walletview.cpp
+
+dzcoin_mm = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+qt_moc = \
+  qt/dzcoin.moc \
+  qt/dzcoinamountfield.moc \
+  qt/intro.moc \
+  qt/overviewpage.moc \
+  qt/rpcconsole.moc
+
+qt_qrc_cpp = qt/qrc_dzcoin.cpp
+qt_qrc = qt/dzcoin.qrc
+qt_qrc_locale_cpp = qt/qrc_dzcoin_locale.cpp
+qt_qrc_locale = qt/dzcoin_locale.qrc
+
+protobuf_cc = qt/paymentrequest.pb.cc
+protobuf_h = qt/paymentrequest.pb.h
+protobuf_proto = qt/paymentrequest.proto
+
+dzcoin_qt_h = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/dzcoinaddressvalidator.h \
+  qt/dzcoinamountfield.h \
+  qt/dzcoingui.h \
+  qt/dzcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/overviewpage.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/receivecoinsdialog.h \
+  qt/receiverequestdialog.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/scicon.h \
+  qt/sendcoinsdialog.h \
+  qt/sendcoinsentry.h \
+  qt/signverifymessagedialog.h \
+  qt/splashscreen.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactiondescdialog.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/transactionview.h \
+  qt/utilitydialog.h \
+  qt/walletframe.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/walletview.h \
+  qt/winshutdownmonitor.h
+
+res_icons = \
+  qt/res/icons/add.png \
+  qt/res/icons/address-book.png \
+  qt/res/icons/about.png \
+  qt/res/icons/about_qt.png \
+  qt/res/icons/dzcoin.ico \
+  qt/res/icons/dzcoin.png \
+  qt/res/icons/clock1.png \
+  qt/res/icons/clock2.png \
+  qt/res/icons/clock3.png \
+  qt/res/icons/clock4.png \
+  qt/res/icons/clock5.png \
+  qt/res/icons/configure.png \
+  qt/res/icons/connect0.png \
+  qt/res/icons/connect1.png \
+  qt/res/icons/connect2.png \
+  qt/res/icons/connect3.png \
+  qt/res/icons/connect4.png \
+  qt/res/icons/debugwindow.png \
+  qt/res/icons/edit.png \
+  qt/res/icons/editcopy.png \
+  qt/res/icons/editpaste.png \
+  qt/res/icons/export.png \
+  qt/res/icons/eye.png \
+  qt/res/icons/eye_minus.png \
+  qt/res/icons/eye_plus.png \
+  qt/res/icons/filesave.png \
+  qt/res/icons/history.png \
+  qt/res/icons/info.png \
+  qt/res/icons/key.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/open.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/quit.png \
+  qt/res/icons/receive.png \
+  qt/res/icons/remove.png \
+  qt/res/icons/send.png \
+  qt/res/icons/synced.png \
+  qt/res/icons/transaction0.png \
+  qt/res/icons/transaction2.png \
+  qt/res/icons/transaction_conflicted.png \
+  qt/res/icons/tx_inout.png \
+  qt/res/icons/tx_input.png \
+  qt/res/icons/tx_output.png \
+  qt/res/icons/tx_mined.png \
+  qt/res/icons/warning.png \
+  qt/res/icons/verify.png
+
+dzcoin_qt_cpp = \
+  qt/dzcoinaddressvalidator.cpp \
+  qt/dzcoinamountfield.cpp \
+  qt/dzcoingui.cpp \
+  qt/dzcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/scicon.cpp \
+  qt/splashscreen.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+if target_windows
+dzcoin_qt_cpp += qt/winshutdownmonitor.cpp
+endif
+
+if enable_wallet
+dzcoin_qt_cpp += \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/overviewpage.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/receivecoinsdialog.cpp \
+  qt/receiverequestdialog.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/sendcoinsdialog.cpp \
+  qt/sendcoinsentry.cpp \
+  qt/signverifymessagedialog.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactiondescdialog.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/transactionview.cpp \
+  qt/walletframe.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/walletview.cpp
+endif
+
+res_images = 
+
+res_movies = $(wildcard qt/res/movies/spinner-*.png)
+
+dzcoin_rc = qt/res/dzcoin-qt-res.rc
+
+dzcoin_qt_includes = -i$(builddir)/qt -i$(srcdir)/qt -i$(srcdir)/qt/forms \
+  -i$(builddir)/qt/forms
+
+qt_libdzcoinqt_a_cppflags = $(dzcoin_includes) $(dzcoin_qt_includes) \
+  $(qt_includes) $(qt_dbus_includes) $(protobuf_cflags) $(qr_cflags)
+
+qt_libdzcoinqt_a_sources = $(dzcoin_qt_cpp) $(dzcoin_qt_h) $(qt_forms_ui) \
+  $(qt_qrc) $(qt_qrc_locale) $(qt_ts) $(protobuf_proto) $(res_icons) $(res_images) $(res_movies)
+
+nodist_qt_libdzcoinqt_a_sources = $(qt_moc_cpp) $(qt_moc) $(protobuf_cc) \
+  $(protobuf_h) $(qt_qrc_cpp) $(qt_qrc_locale_cpp)
+
+# forms/foo.h -> forms/ui_foo.h
+qt_forms_h=$(join $(dir $(qt_forms_ui)),$(addprefix ui_, $(notdir $(qt_forms_ui:.ui=.h))))
+
+# most files will depend on the forms and moc files as includes. generate them
+# before anything else.
+$(qt_moc): $(qt_forms_h)
+$(qt_libdzcoinqt_a_objects) $(qt_dzcoin_qt_objects) : | $(qt_moc)
+
+#generating these with a half-written protobuf header leads to wacky results.
+#this makes sure it's done.
+$(qt_moc): $(protobuf_h)
+$(qt_moc_cpp): $(protobuf_h)
+
+# dzcoin-qt binary #
+qt_dzcoin_qt_cppflags = $(dzcoin_includes) $(dzcoin_qt_includes) \
+  $(qt_includes) $(protobuf_cflags) $(qr_cflags)
+
+qt_dzcoin_qt_sources = qt/dzcoin.cpp
+if target_darwin
+  qt_dzcoin_qt_sources += $(dzcoin_mm)
+endif
+if target_windows
+  qt_dzcoin_qt_sources += $(dzcoin_rc)
+endif
+qt_dzcoin_qt_ldadd = qt/libdzcoinqt.a $(libdzcoin_server)
+if enable_wallet
+qt_dzcoin_qt_ldadd += $(libdzcoin_wallet)
+endif
+qt_dzcoin_qt_ldadd += $(libdzcoin_cli) $(libdzcoin_common) $(libdzcoin_util) $(libdzcoin_crypto) $(libdzcoin_univalue) $(libleveldb) $(libmemenv) \
+  $(boost_libs) $(qt_libs) $(qt_dbus_libs) $(qr_libs) $(protobuf_libs) $(bdb_libs) $(ssl_libs) $(crypto_libs) $(miniupnpc_libs) $(libsecp256k1)
+qt_dzcoin_qt_ldflags = $(reldflags) $(am_ldflags) $(qt_ldflags) $(libtool_app_ldflags)
+qt_dzcoin_qt_libtoolflags = --tag cxx
+
+#locale/foo.ts -> locale/foo.qm
+qt_qm=$(qt_ts:.ts=.qm)
+
+secondary: $(qt_qm)
+
+qt/dzcoinstrings.cpp: $(libdzcoin_server_a_sources) $(libdzcoin_wallet_a_sources)
+	@test -n $(xgettext) || echo "xgettext is required for updating translations"
+	$(am_v_gen) cd $(srcdir); xgettext=$(xgettext) ../share/qt/extract_strings_qt.py $^
+
+translate: qt/dzcoinstrings.cpp $(qt_forms_ui) $(qt_forms_ui) $(dzcoin_qt_cpp) $(dzcoin_qt_h) $(dzcoin_mm)
+	@test -n $(lupdate) || echo "lupdate is required for updating translations"
+	$(am_v_gen) qt_select=$(qt_select) $(lupdate) $^ -locations relative -no-obsolete -ts qt/locale/dzcoin_en.ts
+
+$(qt_qrc_locale_cpp): $(qt_qrc_locale) $(qt_qm)
+	@test -f $(rcc)
+	@test -f $(@d)/$(<f) || cp -f $< $(@d)
+	$(am_v_gen) qt_select=$(qt_select) $(rcc) -name dzcoin_locale $(@d)/$(<f) | \
+	  $(sed) -e '/^\*\*.*created:/d' -e '/^\*\*.*by:/d' > $@
+
+$(qt_qrc_cpp): $(qt_qrc) $(qt_forms_h) $(res_icons) $(res_images) $(res_movies) $(protobuf_h)
+	@test -f $(rcc)
+	$(am_v_gen) qt_select=$(qt_select) $(rcc) -name dzcoin $< | \
+	  $(sed) -e '/^\*\*.*created:/d' -e '/^\*\*.*by:/d' > $@
+
+clean_qt = $(nodist_qt_libdzcoinqt_a_sources) $(qt_qm) $(qt_forms_h) qt/*.gcda qt/*.gcno
+
+cleanfiles += $(clean_qt)
+
+dzcoin_qt_clean: force
+	rm -f $(clean_qt) $(qt_libdzcoinqt_a_objects) $(qt_dzcoin_qt_objects) qt/dzcoin-qt$(exeext) $(libdzcoinqt)
+
+dzcoin_qt : qt/dzcoin-qt$(exeext)
+
+ui_%.h: %.ui
+	@test -f $(uic)
+	@$(mkdir_p) $(@d)
+	$(am_v_gen) qt_select=$(qt_select) $(uic) -o $@ $< || (echo "error creating $@"; false)
+
+%.moc: %.cpp
+	$(am_v_gen) qt_select=$(qt_select) $(moc) $(qt_includes) $(moc_defs) $< | \
+	  $(sed) -e '/^\*\*.*created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(am_v_gen) qt_select=$(qt_select) $(moc) $(qt_includes) $(moc_defs) $< | \
+	  $(sed) -e '/^\*\*.*created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(lrelease)
+	@$(mkdir_p) $(@d)
+	$(am_v_gen) qt_select=$(qt_select) $(lrelease) -silent $< -qm $@
+
+

@@ -1,0 +1,135 @@
+﻿tests += test/test_dzcoin
+bin_programs += test/test_dzcoin
+test_srcdir = test
+test_binary=test/test_dzcoin$(exeext)
+
+
+extra_dist += \
+	test/bctest.py \
+	test/dzcoin-util-test.py \
+	test/data/dzcoin-util-test.json \
+	test/data/blanktx.hex \
+	test/data/tt-delin1-out.hex \
+	test/data/tt-delout1-out.hex \
+	test/data/tt-locktime317000-out.hex \
+	test/data/tx394b54bb.hex \
+	test/data/txcreate1.hex \
+	test/data/txcreate2.hex \
+	test/data/txcreatesign.hex
+
+json_test_files = \
+  test/data/script_valid.json \
+  test/data/base58_keys_valid.json \
+  test/data/base58_encode_decode.json \
+  test/data/base58_keys_invalid.json \
+  test/data/script_invalid.json \
+  test/data/tx_invalid.json \
+  test/data/tx_valid.json \
+  test/data/sighash.json
+
+raw_test_files = test/data/alerttests.raw
+
+generated_test_files = $(json_test_files:.json=.json.h) $(raw_test_files:.raw=.raw.h)
+
+dzcoin_tests =\
+  test/arith_uint256_tests.cpp \
+  test/bignum.h \
+  test/alert_tests.cpp \
+  test/allocator_tests.cpp \
+  test/base32_tests.cpp \
+  test/base58_tests.cpp \
+  test/base64_tests.cpp \
+  test/bip32_tests.cpp \
+  test/bloom_tests.cpp \
+  test/checkblock_tests.cpp \
+  test/checkpoints_tests.cpp \
+  test/coins_tests.cpp \
+  test/compress_tests.cpp \
+  test/crypto_tests.cpp \
+  test/dos_tests.cpp \
+  test/getarg_tests.cpp \
+  test/hash_tests.cpp \
+  test/key_tests.cpp \
+  test/main_tests.cpp \
+  test/mempool_tests.cpp \
+  test/miner_tests.cpp \
+  test/mruset_tests.cpp \
+  test/multisig_tests.cpp \
+  test/netbase_tests.cpp \
+  test/pmt_tests.cpp \
+  test/policyestimator_tests.cpp \
+  test/pow_tests.cpp \
+  test/rpc_tests.cpp \
+  test/sanity_tests.cpp \
+  test/scheduler_tests.cpp \
+  test/script_p2sh_tests.cpp \
+  test/script_tests.cpp \
+  test/scriptnum_tests.cpp \
+  test/serialize_tests.cpp \
+  test/sighash_tests.cpp \
+  test/sigopcount_tests.cpp \
+  test/skiplist_tests.cpp \
+  test/test_dzcoin.cpp \
+  test/test_dzcoin.h \
+  test/timedata_tests.cpp \
+  test/transaction_tests.cpp \
+  test/uint256_tests.cpp \
+  test/univalue_tests.cpp \
+  test/util_tests.cpp
+
+if enable_wallet
+dzcoin_tests += \
+  test/accounting_tests.cpp \
+  wallet/test/wallet_tests.cpp \
+  test/rpc_wallet_tests.cpp
+endif
+
+test_test_dzcoin_sources = $(dzcoin_tests) $(json_test_files) $(raw_test_files)
+test_test_dzcoin_cppflags = $(dzcoin_includes) -i$(builddir)/test/ $(testdefs)
+test_test_dzcoin_ldadd = $(libdzcoin_server) $(libdzcoin_cli) $(libdzcoin_common) $(libdzcoin_util) $(libdzcoin_crypto) $(libdzcoin_univalue) $(libleveldb) $(libmemenv) \
+  $(boost_libs) $(boost_unit_test_framework_lib) $(libsecp256k1)
+if enable_wallet
+test_test_dzcoin_ldadd += $(libdzcoin_wallet)
+endif
+
+test_test_dzcoin_ldadd += $(libdzcoin_consensus) $(bdb_libs) $(ssl_libs) $(crypto_libs) $(miniupnpc_libs)
+test_test_dzcoin_ldflags = $(reldflags) $(am_ldflags) $(libtool_app_ldflags) -static
+
+nodist_test_test_dzcoin_sources = $(generated_test_files)
+
+$(dzcoin_tests): $(generated_test_files)
+
+clean_dzcoin_test = test/*.gcda test/*.gcno $(generated_test_files)
+
+cleanfiles += $(clean_dzcoin_test)
+
+dzcoin_test: $(test_binary)
+
+dzcoin_test_check: $(test_binary) force
+	$(make) check-tests tests=$^
+
+dzcoin_test_clean : force
+	rm -f $(clean_dzcoin_test) $(test_test_dzcoin_objects) $(test_binary)
+
+check-local:
+	@echo "running test/dzcoin-util-test.py..."
+	$(am_v_at)srcdir=$(srcdir) pythonpath=$(builddir)/test $(srcdir)/test/dzcoin-util-test.py
+	$(am_v_at)$(make) $(am_makeflags) -c secp256k1 check
+
+%.json.h: %.json
+	@$(mkdir_p) $(@d)
+	@echo "namespace json_tests{" > $@
+	@echo "static unsigned const char $(*f)[] = {" >> $@
+	@$(hexdump) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(sed) -e 's/0x  ,//g' >> $@
+	@echo "};};" >> $@
+	@echo "generated $@"
+
+%.raw.h: %.raw
+	@$(mkdir_p) $(@d)
+	@echo "namespace alert_tests{" > $@
+	@echo "static unsigned const char $(*f)[] = {" >> $@
+	@$(hexdump) -v -e '8/1 "0x%02x, "' -e '"\n"' $< | $(sed) -e 's/0x  ,//g' >> $@
+	@echo "};};" >> $@
+	@echo "generated $@"
+
+

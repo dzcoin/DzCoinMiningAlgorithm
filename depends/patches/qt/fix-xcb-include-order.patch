@@ -1,0 +1,33 @@
+﻿--- old/qtbase/src/plugins/platforms/xcb/xcb-plugin.pro 2015-03-17 02:06:42.705930685 +0000
++++ new/qtbase/src/plugins/platforms/xcb/xcb-plugin.pro 2015-03-17 02:08:41.281926351 +0000
+@@ -103,7 +103,6 @@
+
+ defines += $$qmake_defines_xcb
+ libs += $$qmake_libs_xcb
+-qmake_cxxflags += $$qmake_cflags_xcb
+
+ config += qpa/genericunixfontdatabase
+
+@@ -118,7 +117,8 @@
+ contains(qt_config, xcb-qt) {
+     defines += xcb_use_render
+     xcb_dir = ../../../3rdparty/xcb
+-    includepath += $$xcb_dir/include $$xcb_dir/sysinclude
++    qmake_cflags += -i$$xcb_dir/include -i$$xcb_dir/sysinclude $$qmake_cflags_xcb
++    qmake_cxxflags += -i$$xcb_dir/include -i$$xcb_dir/sysinclude $$qmake_cflags_xcb
+     libs += -lxcb -l$$out_pwd/xcb-static -lxcb-static
+ } else {
+     libs += -lxcb -lxcb-image -lxcb-icccm -lxcb-sync -lxcb-xfixes -lxcb-shm -lxcb-randr
+--- old/qtbase/src/plugins/platforms/xcb/xcb-static/xcb-static.pro      2015-03-17 02:07:04.641929383 +0000
++++ new/qtbase/src/plugins/platforms/xcb/xcb-static/xcb-static.pro      2015-03-17 02:10:15.485922059 +0000
+@@ -8,7 +8,7 @@
+
+ xcb_dir = ../../../../3rdparty/xcb
+
+-includepath += $$xcb_dir/include $$xcb_dir/include/xcb $$xcb_dir/sysinclude
++qmake_cflags += -i$$xcb_dir/include -i$$xcb_dir/include/xcb -i$$xcb_dir/sysinclude $$qmake_cflags_xcb
+
+ # ignore compiler warnings in 3rdparty code
+ qmake_cflags_static_lib+=-w
+
+

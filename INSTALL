@@ -1,0 +1,6 @@
+﻿building dzcoin
+
+see doc/build-*.md for instructions on building dzcoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of dzcoin.
+
